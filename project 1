@@ -1,0 +1,52 @@
+from random import randint
+import copy
+
+
+word_dict = {
+    'adjective': ['weird','awesome','sassy','ugly','grumpy'],
+    'Verb': ['puke','run','chase','sleep','drag','drink'],
+    'Noun': ['Adi','Noopur','Vivek','Ayesha','Akshita','Tejas'],
+    'adverb': ['gently', 'quietly','hastily', 'quickly','slowly'],
+    'verb,past tense': ['caught','bought','trapped', 'stalked','wrapped']
+}
+
+story = (
+"Today I went to the zoo. I saw {} {} jumping up and down in its tree. "
+"He {} {} through the large tunnel that led to its {} {}." 
+"I got some peanuts and passed them through the cage to a gigantic gray {} towering above my head. Feeding that animal made me hungry. "
+"I went to get a {} scoop of ice cream. It filled my stomach. "
+"Afterwards I had to {} {} to catch our bus. "
+"When I got home I {} my mom for a {} day at the zoo. "
+
+)
+
+
+def get_word(type,local_dict):
+    words = local_dict[type]
+    cnt = len(words)-1
+    index =  randint(0,cnt)
+    return local_dict[type].pop(index)
+
+def create_story():
+    local_dict = copy.deepcopy(word_dict)
+    return story.format(
+        get_word('adjective', local_dict),
+        get_word('Noun', local_dict),
+        get_word('verb,past tense', local_dict),
+        get_word('adverb', local_dict),
+        get_word('adjective', local_dict),
+        get_word('Noun', local_dict),
+        get_word('Noun', local_dict),
+        get_word('adjective', local_dict),
+        get_word('Verb', local_dict),
+        get_word('adverb', local_dict),
+        get_word('verb,past tense', local_dict),
+        get_word('adjective', local_dict),
+)
+
+print("Story 1: ")
+print(create_story())
+print()
+print("Story 2: ")
+print(create_story())
+
